@@ -1,0 +1,78 @@
+html, body {
+    height: 100%;
+}
+
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to top, #014a97, #ffffff);
+    padding: 2rem;
+    color: #014a97;
+    height: 100%;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+    text-align: center;
+}
+
+.logo {
+    width: 300px;
+}
+
+.logoHeader {
+    
+    top: 1rem;
+    left: 1rem;
+    width: 40px; /* más pequeño que .logo */
+}
+
+.instructions {
+    margin-top: 2rem;
+}
+
+.instructions h3 {
+    margin-bottom: 0.5rem;
+}
+
+ul {
+    padding-left: 1.5rem;
+}
+
+.products {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.products img {
+    width: 120px;
+    border-radius: 0.5rem;
+}
+
+.footer {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.play-button {
+    display: block;
+    margin: 0 auto;
+    background-color: #014a97;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.play-button:hover {
+    background-color: #256d28;
+}

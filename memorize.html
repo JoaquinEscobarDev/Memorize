@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Juego de Memoria</title>
+    <link rel="stylesheet" href="./style/memorize.css" />
+</head>
+
+<body>
+    <!-- Vista del juego -->
+    <div id="game" class="view active">
+        <div class="buttons">
+            <button onclick="goHome()">🏠</button>
+            <button onclick="startGame()">🔄</button>
+        </div>
+        <div class="game" id="board"></div>
+    </div>
+
+    <!-- Mensaje de felicitaciones -->
+    <div id="confetti" style="display: none;">
+        🎊 ¡Felicidades! Has completado el juego 🎊
+    </div>
+
+    <script src="./js/memorize.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            startGame();
+        });
+    </script>
+    <!-- Aquí carga el audio oculto -->
+    <audio id="clickSound" src="./style/sound/card.mp3" preload="auto"></audio>
+</body>
+
+</html>

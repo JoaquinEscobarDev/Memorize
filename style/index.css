@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to top, #014a97, #ffffff);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    text-align: center;
+}
+
+.logo {
+    width: 100px;
+    margin-bottom: 1rem;
+}
+
+.brand {
+    font-size: 2.5rem;
+    color: #014a97;
+}
+
+.start-button {
+    background-color: #014a97;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    margin-top: 2rem;
+}
+
+.start-button:hover {
+    background-color: #256d28;
+}

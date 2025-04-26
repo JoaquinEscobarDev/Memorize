@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instrucciones</title>
+    <link rel="stylesheet" href="./style/home.css">
+</head>
+
+<body>
+    <div class="logoHeader">
+        <img src="./style/assets/aradixRetard.jpeg" alt="Aradix Retard" class="logo">
+    </div>
+    <div class="header">
+        <h2>MEMORICE</h2>
+    </div>
+
+    <div class="instructions">
+        <h3>Instrucciones</h3>
+        <p>Encuentra todas las parejas de tarjetas con los beneficios de nuestros productos.</p>
+
+        <h3>Cómo jugar</h3>
+        <ul>
+            <li>Da vuelta las cartas y encuentra las parejas correctas.</li>
+        </ul>
+
+        <h3>Consejos para ganar</h3>
+        <ul>
+            <li>Relaciona las palabras con sus beneficios correspondientes.</li>
+            <li>¡Completa el desafío en el menor tiempo posible!</li>
+        </ul>
+    </div>
+
+    <div class="products">
+        <img src="./style/assets/neoaradix.jpeg" alt="Neoaradix">
+        <img src="./style/assets/samexid.jpeg" alt="Samexid">
+    </div>
+
+    <p class="footer">¡PON A PRUEBA TU MEMORIA!</p>
+
+    <button class="play-button" onclick="playAndStart()">Jugar 🧠</button>
+
+    <!-- Aquí carga el audio oculto -->
+    <audio id="clickSound" src="./style/sound/click.mp3" preload="auto"></audio>
+
+    <script>
+        function playAndStart() {
+            const audio = document.getElementById('clickSound');
+            audio.play();
+            setTimeout(() => {
+                location.href = 'memorize.html';
+            }, 300); // espera 300 ms para que el sonido se escuche completo antes de cambiar
+        }
+    </script>
+</body>
+
+</html>
