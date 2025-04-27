@@ -4,34 +4,36 @@ const confetti = document.getElementById('confetti');
 let flippedCards = [];
 let lockBoard = false;
 
+// Frases asociadas a imágenes
 const frases = [
-    "Dopamina + noradrenalina = regulación atencional",
-    "Corteza prefrontal: director de orquesta cerebral",
-    "Circuitos fronto-estriatales: autopista de las funciones ejecutivas",
-    "Memoria de trabajo: el bloc de notas mental",
-    "Profármaco: liberación prolongada de dexanfetamina",
-    "Hidrólisis eritrocitaria: activación en torrente sanguíneo",
-    "Recaptación inhibida = neurotransmisión optimizada",
-    "13 horas de cobertura sintomática continua",
-    "Inatención persistente ≠ falta de voluntad",
-    "Hiperfoco: atención láser en intereses selectivos",
-    "Desregulación emocional: tormentas afectivas repentinas",
-    "Procrastinación crónica: parálisis ejecutiva",
-    "30 mg lisdexanfetamina = 8.9 mg dexanfetamina activa",
-    "Administración con alimentos: biodisponibilidad preservada",
-    "Mecanismo prodrogado: menor potencial de abuso",
-    "Efecto rebote controlado: curva farmacocinética suave",
-    "TDAH adulto: 60% mantiene síntomas tras la infancia",
-    "Comorbilidades frecuentes: ansiedad + trastornos del aprendizaje",
-    "Neuroplasticidad: el cerebro se reconfigura con tratamiento",
-    "Fenotipo combinado: 70% de los casos diagnosticados",
-    "No es pereza: falla en la autoregulación neuroquímica",
-    "Diagnóstico diferencial: descartar trastornos tiroideos",
-    "Terapia multimodal: fármacos + estrategias compensatorias",
-    "Lisdexanfetamina: estabilidad molecular = respuesta sostenida"
+    { text: "Dopamina + noradrenalina = regulación atencional", icon: './style/assets/cara.png' },
+    { text: "Corteza prefrontal: director de orquesta cerebral", icon: './style/assets/estomagoBueno.png' },
+    { text: "Circuitos fronto-estriatales: autopista de las funciones ejecutivas", icon: './style/assets/estomagoMalo.png' },
+    { text: "Memoria de trabajo: el bloc de notas mental", icon: './style/assets/guardar.png' },
+    { text: "Profármaco: liberación prolongada de dexanfetamina", icon: './style/assets/paleta.png' },
+    { text: "Hidrólisis eritrocitaria: activación en torrente sanguíneo", icon: './style/assets/pastillaMala.png' },
+    { text: "Recaptación inhibida = neurotransmisión optimizada", icon: './style/assets/cara.png' },
+    { text: "13 horas de cobertura sintomática continua", icon: './style/assets/estomagoBueno.png' },
+    { text: "Inatención persistente ≠ falta de voluntad", icon: './style/assets/estomagoMalo.png' },
+    { text: "Hiperfoco: atención láser en intereses selectivos", icon: './style/assets/guardar.png' },
+    { text: "Desregulación emocional: tormentas afectivas repentinas", icon: './style/assets/paleta.png' },
+    { text: "Procrastinación crónica: parálisis ejecutiva", icon: './style/assets/pastillaMala.png' },
+    { text: "30 mg lisdexanfetamina = 8.9 mg dexanfetamina activa", icon: './style/assets/cara.png' },
+    { text: "Administración con alimentos: biodisponibilidad preservada", icon: './style/assets/estomagoBueno.png' },
+    { text: "Mecanismo prodrogado: menor potencial de abuso", icon: './style/assets/estomagoMalo.png' },
+    { text: "Efecto rebote controlado: curva farmacocinética suave", icon: './style/assets/guardar.png' },
+    { text: "TDAH adulto: 60% mantiene síntomas tras la infancia", icon: './style/assets/paleta.png' },
+    { text: "Comorbilidades frecuentes: ansiedad + trastornos del aprendizaje", icon: './style/assets/pastillaMala.png' },
+    { text: "Neuroplasticidad: el cerebro se reconfigura con tratamiento", icon: './style/assets/cara.png' },
+    { text: "Fenotipo combinado: 70% de los casos diagnosticados", icon: './style/assets/estomagoBueno.png' },
+    { text: "No es pereza: falla en la autoregulación neuroquímica", icon: './style/assets/estomagoMalo.png' },
+    { text: "Diagnóstico diferencial: descartar trastornos tiroideos", icon: './style/assets/guardar.png' },
+    { text: "Terapia multimodal: fármacos + estrategias compensatorias", icon: './style/assets/paleta.png' },
+    { text: "Lisdexanfetamina: estabilidad molecular = respuesta sostenida", icon: './style/assets/pastillaMala.png' }
 ];
 
-const cardsData = frases;
+// 🔥 Duplicamos para tener pares
+const cardsData = [...frases, ...frases];
 
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -44,10 +46,11 @@ function renderCards() {
     board.innerHTML = '';
     const shuffled = [...cardsData];
     shuffle(shuffled);
-    shuffled.forEach(value => {
+
+    shuffled.forEach((value, index) => {
         const card = document.createElement('div');
         card.classList.add('card');
-        card.dataset.value = value;
+        card.dataset.value = value.text; // ahora el valor es el texto
 
         const cardInner = document.createElement('div');
         cardInner.className = 'card-inner';
@@ -57,8 +60,11 @@ function renderCards() {
         front.textContent = '';
 
         const back = document.createElement('div');
-        back.className = 'card-back';
-        back.textContent = value;
+        back.className = 'card-back group-' + (Math.floor(index / 12) + 1); // Asignar grupo de color
+        back.innerHTML = `
+            <img src="${value.icon}" class="icon" alt="icono" />
+            <div class="text">${value.text}</div>
+        `;
 
         const check = document.createElement('div');
         check.className = 'check';
@@ -87,11 +93,8 @@ function flipCard(card) {
     }
 
     if (flippedCards.length === 2) {
-        // Espera un poquito antes de bloquear
-        setTimeout(() => {
-            lockBoard = true;
-            setTimeout(checkForMatch, 700); // luego de otro momento revisa si coinciden
-        }, 400); // deja que la carta termine de girar (ajustable según la animación)
+        lockBoard = true; // ✅ Bloqueamos ya
+        setTimeout(checkForMatch, 1000); // ⏳ Esperamos 1000 ms para dejar que giren completamente
     }
 }
 
@@ -117,23 +120,37 @@ function checkWin() {
     if (matchedCards.length === cardsData.length) {
         confetti.style.display = 'flex';
         setTimeout(() => {
-            window.location.href = 'home.html'; // ← volver a home.html (ajusta el nombre si tu home se llama diferente)
+            window.location.href = 'home.html';
         }, 5000);
     }
 }
 
 function startGame() {
     flippedCards = [];
-    lockBoard = false;
+    lockBoard = true; // bloqueamos temporalmente
+
     renderCards();
+
+    // Mostrar reverso automáticamente
+    const allCards = document.querySelectorAll('.card');
+    allCards.forEach(card => {
+        card.classList.add('flipped');
+    });
+
+    // Después de 5 segundos, esconder reverso y liberar
+    setTimeout(() => {
+        allCards.forEach(card => {
+            card.classList.remove('flipped');
+        });
+        lockBoard = false;
+    }, 5000); // 🔥 5000 ms = 5 segundos
 }
 
-// Al cargar la página automáticamente inicia el juego
+function goHome() {
+    window.location.href = 'home.html';
+}
+
+// Inicializar juego
 document.addEventListener("DOMContentLoaded", () => {
     startGame();
 });
-
-// Si quieres mantener los botones para reiniciar o volver al home
-function goHome() {
-    window.location.href = 'home.html'; // ← asegúrate que el nombre sea correcto
-}

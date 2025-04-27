@@ -12,7 +12,9 @@ body {
     min-height: 100vh;
     background: linear-gradient(to top, #014a97, #ffffff);
     overflow-x: hidden;
+    padding: 1rem;
 }
+
 
 .view {
     display: none;
@@ -45,11 +47,11 @@ body {
 
 .game {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 5 columnas */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 1rem;
     margin-top: 2rem;
-    width: 80vw;
-    max-width: 600px;
+    width: 90vw;
+    max-width: 1000px;
 }
 
 
@@ -66,7 +68,7 @@ body {
 
 .card {
     width: 100%;
-    aspect-ratio: 1/1;
+    aspect-ratio: 3/4; /* Solo esta versión correcta */
     perspective: 1000px;
     animation: cardEntry 0.8s ease;
 }
@@ -80,6 +82,19 @@ body {
         transform: scale(1);
         opacity: 1;
     }
+}
+
+.icon {
+    width: 30%;
+    height: auto;
+    margin-bottom: 0.5rem;
+}
+
+.text {
+    font-family: Arial, sans-serif;
+    font-size: clamp(0.7rem, 2vw, 1rem);
+    padding: 0 5px;
+    text-align: center;
 }
 
 .card-inner {
@@ -104,6 +119,7 @@ body {
     backface-visibility: hidden;
     border-radius: 12px;
     display: flex;
+    flex-direction: column; /* ✅ Para poner imagen arriba y texto abajo */
     justify-content: center;
     align-items: center;
     font-size: 1rem;
@@ -122,10 +138,14 @@ body {
 
 .card-back {
     background: linear-gradient(to top, #014a97, #ffffff);
-
     transform: rotateY(180deg);
     color: black;
     font-weight: bold;
+}
+
+.card.matched .card-back {
+    background: linear-gradient(to top, #4caf50, #ffffff); /* ✅ Difuminado verde-blanco cuando hace match */
+    color: white;
 }
 
 .card .check {
@@ -148,7 +168,6 @@ button {
     border-radius: 8px;
     border: none;
     background: linear-gradient(to top, #014a97, #ffffff);
-
     color: white;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
@@ -157,4 +176,20 @@ button {
 button:hover {
     background-color: #d63031;
     transform: scale(1.05);
+}
+
+.group-1 {
+    background: linear-gradient(to top, #ff7b7b, #ffeaea);
+}
+
+.group-2 {
+    background: linear-gradient(to top, #7bff7b, #eaffea);
+}
+
+.group-3 {
+    background: linear-gradient(to top, #7bbdff, #eaf4ff);
+}
+
+.group-4 {
+    background: linear-gradient(to top, #ffff7b, #ffffea);
 }
