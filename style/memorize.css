@@ -206,3 +206,77 @@ button:hover {
 .group-4 {
     background: linear-gradient(to top, #ffff7b, #ffffea);
 }
+#endScreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    width: 100%; /* ✅ ocupa todo el ancho */
+    height: 100vh; /* ✅ ocupa toda la altura de la ventana */
+    background: linear-gradient(to bottom, #014a97, #ffffff); /* Degradado azul-blanco */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    font-family: 'Arial', sans-serif;
+}
+
+
+
+.logo-container {
+    position: relative;
+    margin: 2rem 0;
+}
+
+.logo-finish {
+    width: 150px;
+    height: auto;
+    border-radius: 1rem;
+}
+
+.restart-button {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.restart-button:hover {
+    background-color: #d63031;
+    color: white;
+}
+.demo-button {
+    background-color: #ffcc00;
+    color: black;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 0.5rem 0.7rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border: none;
+}
+
+.demo-button:hover {
+    background-color: #ffaa00;
+}
+
+@media (max-width: 768px) {
+    .text {
+        font-size: clamp(0.8rem, 3vw, 1.2rem);
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    button {
+        font-size: 1.2rem;
+    }
+}

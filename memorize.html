@@ -14,14 +14,20 @@
         <div class="buttons">
             <button onclick="goHome()">🏠</button>
             <button onclick="startGame()">🔄</button>
-        </div>
+            <button onclick="showEndScreen()" class="demo-button">🎯</button> <!-- Nuevo botón de demo -->
+        </div>        
         <div class="game" id="board"></div>
     </div>
 
-    <!-- Mensaje de felicitaciones -->
-    <div id="confetti" style="display: none;">
-        🎊 ¡Felicidades! Has completado el juego 🎊
+ <!-- Vista de fin del juego -->
+<div id="endScreen" class="view" style="display: none;">
+    <h2>¿Quieres jugar de nuevo?</h2>
+    <div class="logo-container">
+        <img src="./style/assets/logoCarta.jpeg" alt="Logo" class="logo-finish">
+        <button class="restart-button" onclick="goBack()">🔄</button> <!-- Ahora llama a goBack() -->
     </div>
+</div>
+
 
     <script src="./js/memorize.js"></script>
     <script>
@@ -29,8 +35,10 @@
             startGame();
         });
     </script>
-    <!-- Aquí carga el audio oculto -->
+
     <audio id="clickSound" src="./style/sound/card.mp3" preload="auto"></audio>
+    <audio id="victorySound" src="./style/sound/victory.mp3" preload="auto"></audio>
 </body>
+
 
 </html>

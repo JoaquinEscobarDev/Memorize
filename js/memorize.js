@@ -105,10 +105,20 @@ function checkForMatch() {
     if (isMatch) {
         card1.classList.add('matched');
         card2.classList.add('matched');
+        
+        const victoryAudio = document.getElementById('victorySound');
+        if (victoryAudio) {
+            victoryAudio.currentTime = 0;
+            victoryAudio.play();
+        }
+
         checkWin();
     } else {
-        card1.classList.remove('flipped');
-        card2.classList.remove('flipped');
+        // 🔵 Si no son iguales, dar vuelta otra vez
+        setTimeout(() => {
+            card1.classList.remove('flipped');
+            card2.classList.remove('flipped');
+        }, 500); // puedes ajustar el tiempo si quieres
     }
 
     flippedCards = [];
@@ -118,12 +128,20 @@ function checkForMatch() {
 function checkWin() {
     const matchedCards = document.querySelectorAll('.card.matched');
     if (matchedCards.length === cardsData.length) {
-        confetti.style.display = 'flex';
         setTimeout(() => {
-            window.location.href = 'home.html';
-        }, 5000);
+            showEndScreen();
+        }, 2000); // después de 2 segundos muestra la nueva vista
     }
 }
+
+function showEndScreen() {
+    document.getElementById('game').classList.remove('active');
+    document.getElementById('game').style.display = 'none';
+    document.getElementById('endScreen').classList.add('active');
+    document.getElementById('endScreen').style.display = 'flex';
+}
+
+
 
 function startGame() {
     flippedCards = [];
@@ -154,3 +172,7 @@ function goHome() {
 document.addEventListener("DOMContentLoaded", () => {
     startGame();
 });
+
+function goBack() {
+    window.history.back();
+}
